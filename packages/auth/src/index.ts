@@ -3,24 +3,25 @@ import {
     createMongoAbility,
 } from "@casl/ability";
 import type { CreateAbility, MongoAbility } from "@casl/ability";
-import type { User } from "./models/user";
+import type { User } from "./models/user.js";
 
-import { userSubject } from './subjects/user';
-import { projectSubject } from "./subjects/project";
+import { userSubject } from './subjects/user.js';
+import { projectSubject } from "./subjects/project.js";
 
 import { z } from "zod";
-import { permissions } from "./permissions";
-import { organizationSubject } from "./subjects/organization";
-import { inviteSubject } from "./subjects/invite";
-import { billingSubject } from "./subjects/billing";
+import { permissions } from "./permissions.js";
+import { organizationSubject } from "./subjects/organization.js";
+import { inviteSubject } from "./subjects/invite.js";
+import { billingSubject } from "./subjects/billing.js";
 
 const appAbilitiesSchema = z.union([
     projectSubject,userSubject,organizationSubject,inviteSubject,billingSubject,z.tuple([z.literal('manage'),z.literal('all')])
 ])
 
-export * from "./models/organization";
-export * from "./models/project";
-export * from "./models/user";
+export * from "./models/organization.js";
+export * from "./models/project.js";
+export * from "./models/user.js";
+export * from "./roles.js";
 
 
 
@@ -40,6 +41,8 @@ export function defineAbiltyFor(user:User){
 						return subject.__typename;
 					},
 				})
+                ability.can=ability.can.bind(ability);
+                ability.cannot=ability.cannot.bind(ability);
     return ability;
 
 }

@@ -1,18 +1,32 @@
 {
-    "name": "@repo/api",
-    "scripts": {
-        "dev": "tsx watch src/http/server.ts"
-    },
-    "version": "1.0.0",
-    "devDependencies": {
-        "@types/node": "^22.13.5",
-        "prisma": "^6.4.1",
-        "tsx": "^4.19.3"
-    },
-    "dependencies": {
-        "@fastify/cors": "^10.1.0",
-        "fastify": "^5.2.1",
-        "fastify-type-provider-zod": "^4.0.2",
-        "zod": "^3.24.2"
-    }
+  "name": "@repo/api",
+  "type": "module",
+  "scripts": {
+    "dev": "npx dotenv -e ../../.env -- tsx watch src/http/server.ts",
+    "db:migrate":"npx dotenv -e ../../.env -- prisma migrate dev"
+  },
+  "version": "1.0.0",
+  "devDependencies": {
+    "@faker-js/faker": "^9.5.0",
+    "@types/node": "^22.13.5",
+    "dotenv-cli": "^8.0.0",
+    "prisma": "^6.4.1",
+    "tsx": "^4.19.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.1.0",
+    "@fastify/jwt": "^9.0.4",
+    "@fastify/swagger": "^9.4.2",
+    "@fastify/swagger-ui": "^5.2.2",
+    "@prisma/client": "^6.4.1",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.2",
+    "fastify": "^5.2.1",
+    "fastify-plugin": "^5.0.1",
+    "fastify-type-provider-zod": "^4.0.2",
+    "zod": "^3.24.2"
+  }
 }

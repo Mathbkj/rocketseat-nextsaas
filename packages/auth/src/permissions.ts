@@ -1,7 +1,7 @@
 import type { AbilityBuilder } from "@casl/ability";
-import type { AppAbilty } from ".";
-import type { User } from "./models/user";
-import type { Role } from "./roles";
+import type { AppAbilty } from "./index.js";
+import type { User } from "./models/user.js";
+import type { Role } from "./roles.js";
 type PermissionsByRole = (user:User,builder:AbilityBuilder<AppAbilty>)=>void;
 
 export const permissions:Record<Role,PermissionsByRole> = {

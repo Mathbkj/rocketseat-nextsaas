@@ -1,4 +1,12 @@
 {
+
     "extends":"@repo/typescript-config/node.json",
-    "include":["src/**/*"]
+    "include":["src/**/*","@types/*.d.ts"],
+    "compilerOptions": {
+        "moduleResolution": "node16",
+        "baseUrl":".",
+        "paths": {
+            "@/*":["./src/*"]
+        }
+    }
 }
